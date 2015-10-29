@@ -1,6 +1,8 @@
 Score game for the Minetest engine
 ===================================
 
+NOTE: THIS IS JUST A RANDOM BENCHMARK FORK OF SCORE, USE THIS INSTEAD: https://github.com/PilzAdam/score
+
 benchmark:
 ---------
 
