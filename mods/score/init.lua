@@ -577,8 +577,9 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local noise_table = noise_map:get3dMap_flat(minp)
 	local noise_index = 0
 	o3 = os.clock()
-	for z = minp.z, maxp.z do
 	for y = minp.y, maxp.y do
+	local ything = math.abs((y + 50) / 32.0) - 0.8
+	for z = minp.z, maxp.z do
 	for x = minp.x, maxp.x do
 		local vox_index = vox_area:index(x, y, z)
 		noise_index = noise_index + 1
@@ -586,7 +587,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		local radius = math.sqrt(x * x + z * z)
 		local level = math.min(math.ceil(radius / LEVEL_EXTENT), LEVEL_MAX)
 
-		local noise = noise_table[noise_index] + math.abs((y + 50) / 32.0) - 0.8
+		local noise = noise_table[noise_index] + ything
 
 		if noise > 0.0 then
 			vox_data[vox_index] = c_stones[level]
