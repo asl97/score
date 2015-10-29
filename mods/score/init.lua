@@ -70,7 +70,7 @@ local function get_light_cost(level)
 	local cost = {}
 	cost["score:coal_" .. level] = 50
 	if level > 1 then
-		cost["score:coal_" .. (level + 1)] = 80
+		cost["score:coal_" .. (level - 1)] = 80
 	end
 	return cost
 end
@@ -312,6 +312,11 @@ minetest.register_on_joinplayer(function(player)
 		number = "0xFFFFFF",
 		offset = { x = -10, y = -10 },
 		alignment = { x = -1, y = -1 },
+	})
+
+	minetest.sound_play("score_background", {
+		to_player = player:get_player_name(),
+		loop = true, -- TODO
 	})
 
 	local hud_inv = player:get_inventory()

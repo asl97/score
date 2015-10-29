@@ -30,14 +30,17 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-License of media (textures, sounds and models):
------------------------------------------------
-Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)
-http://creativecommons.org/licenses/by-sa/3.0/
+License of textures:
+--------------------
+Copyright (C) 2013 PilzAdam <pilzadam@minetest.net>
+CC BY-SA 3.0: http://creativecommons.org/licenses/by-sa/3.0/
 
-Authors of media (textures, sounds and models):
------------------------------------------------
-Everything not listed here: Copyright (C) 2013 PilzAdam <pilzadam@minetest.net>
+License of sound effects:
+-------------------------
+Copyright (C) 2013 Mito551
+CC BY-SA 3.0: http://creativecommons.org/licenses/by-sa/3.0/
 
-Copyright (C) 2013 Mito551:
-  All soundfiles (*.ogg)
+License of background music (score_background.ogg):
+---------------------------------------------------
+Copyright (C) 2006 natlyea https://libre.fm/artist/natlyea/
+CC BY 2.5: http://creativecommons.org/licenses/by/2.5/
