@@ -516,7 +516,7 @@ minetest.register_node("score:light", {
 	description = "Light",
 	tiles = { "score_light.png" },
 	groups = { dig_immediate = 3 },
-	light_source = 15,
+	light_source = 14,
 	sounds = {
 		footstep = { name = "score_footstep", gain = 1.0 },
 		place = { name=" score_dig ", gain = 0.5 },
