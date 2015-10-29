@@ -81,14 +81,25 @@ local function update_formspec(player, not_enough_resources)
 
 	local formspec = "size[5,7]"
 	formspec = formspec .. "tableoptions[background=#00000000;border=false;highlight=#00000000]"
-	formspec = formspec .. "tablecolumns[color;text;text]"
+	formspec = formspec .. "tablecolumns[color;image,"
+			.. "0=,"
+			.. "1=" .. hud_inv:get_stack("main", INV_PICK_INDEX):get_definition().inventory_image .. ","
+			.. "2=" .. minetest.registered_items["score:light"].tiles[1] .. ","
+			.. "3=" .. minetest.registered_items["score:score_ore_1"].tiles[1] .. ","
+			.. "4=" .. minetest.registered_items["score:stone_1"].tiles[1] .. ","
+			.. "5=" .. minetest.registered_items["score:stone_2"].tiles[1] .. ","
+			.. "6=" .. minetest.registered_items["score:coal_1"].tiles[1] .. ","
+			.. "7=" .. minetest.registered_items["score:coal_2"].tiles[1] .. ","
+			.. "8=" .. minetest.registered_items["score:iron_1"].tiles[1] .. ","
+			.. "9=" .. minetest.registered_items["score:iron_2"].tiles[1] .. ""
+			.. ";text;text]"
 	formspec = formspec .. "table[0,0;5,4;;"
 
 	local level, speed = get_pick_info(player)
 	local light = hud_inv:get_stack("main", INV_LIGHT_INDEX)
-	formspec = formspec .. "#FFFF00,Item,Amount,"
-	formspec = formspec .. ",Pick Level " .. level .. " Speed " .. speed .. ",1,"
-	formspec = formspec .. "," .. light:get_definition().description .. "," .. light:get_count() .. ","
+	formspec = formspec .. "#FFFF00,0,Item,Amount,"
+	formspec = formspec .. ",1,Pick Level " .. level .. " Speed " .. speed .. ",1,"
+	formspec = formspec .. ",2," .. light:get_definition().description .. "," .. light:get_count() .. ","
 
 	local lines = {}
 	for itemname,count in pairs(inv) do
@@ -114,7 +125,24 @@ local function update_formspec(player, not_enough_resources)
 	end)
 
 	for _,line in ipairs(lines) do
-		formspec = formspec .. "," .. line[1] .. "," .. line[2] .. ","
+		local image = 0
+		if line[1] == "Score" then
+			image = 3
+		else
+			local base = 0
+			if line[1]:match("^Stone") then
+				base = 4
+			elseif line[1]:match("^Coal") then
+				base = 6
+			elseif line[1]:match("^Iron") then
+				base = 8
+			end
+			local level = tonumber(line[1]:match("([%d]+)$"))
+			if level and base ~= 0 then
+				image = base + ((level - 1) % 2)
+			end
+		end
+		formspec = formspec .. "," .. image .. "," .. line[1] .. "," .. line[2] .. ","
 	end
 
 	-- remove trailing comma
