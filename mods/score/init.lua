@@ -562,17 +562,19 @@ local c_air
 local c_stones = {}
 
 minetest.register_on_generated(function(minp, maxp, seed)
+	local o1, o2, o3, o4, o5, o6, o7, o8
+	o1 = os.clock()
 	local c_air = c_air or minetest.get_content_id("air")
 
 	local vox_manip, vox_minp, vox_maxp = minetest.get_mapgen_object("voxelmanip")
 	local vox_data = vox_manip:get_data()
 	local vox_area = VoxelArea:new({ MinEdge = vox_minp, MaxEdge = vox_maxp })
-
+	o2 = os.clock()
 	local noise_map = PerlinNoiseMap(mg_noise_params,
 			{ x = maxp.x - minp.x + 1, y = maxp.y - minp.y + 1, z = maxp.z - minp.z + 1 })
 	local noise_table = noise_map:get3dMap_flat(minp)
 	local noise_index = 0
-
+	o3 = os.clock()
 	for z = minp.z, maxp.z do
 	for y = minp.y, maxp.y do
 	for x = minp.x, maxp.x do
@@ -595,11 +597,23 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	end
 	end
 	end
-
+	o4 = os.clock()
 	vox_manip:set_data(vox_data)
+	o5 = os.clock()
 	minetest.generate_ores(vox_manip, minp, maxp)
+	o6 = os.clock()
 	vox_manip:calc_lighting()
+	o7 = os.clock()
 	vox_manip:write_to_map()
+	o8 = os.clock()
+	print("total: "..o8-o1)
+	print("setup: "..o2-o1)
+	print("noise gen: "..o3-o2)
+	print("stone gen: "..o4-o3)
+	print("set data: "..o5-o4)
+	print("ore gen: "..o6-o5)
+	print("lighting: "..o7-o6)
+	print("write: "..o8-o7)
 end)
 
 -- Some aliases to supress error messages
