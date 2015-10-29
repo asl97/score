@@ -583,13 +583,12 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	for x = minp.x, maxp.x do
 		local vox_index = vox_area:index(x, y, z)
 		noise_index = noise_index + 1
-		
-		local radius = math.sqrt(x * x + z * z)
-		local level = math.min(math.ceil(radius / LEVEL_EXTENT), LEVEL_MAX)
 
 		local noise = noise_table[noise_index] + ything
 
 		if noise > 0.0 then
+			local radius = math.sqrt(x * x + z * z)
+			local level = math.min(math.ceil(radius / LEVEL_EXTENT), LEVEL_MAX)
 			vox_data[vox_index] = c_stones[level]
 		else
 			vox_data[vox_index] = c_air
