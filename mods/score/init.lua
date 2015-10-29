@@ -547,7 +547,7 @@ local mg_noise_params = {
 	offset = 0.0,
 	scale = 1.0,
 	spread = { x = 25, y = 25, z = 25 },
-	seed = mg_params.seed,
+	seed = 4,
 	octaves = 4,
 	persistence = 0.5,
 }
@@ -572,7 +572,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local vox_data = vox_manip:get_data()
 	local vox_area = VoxelArea:new({ MinEdge = vox_minp, MaxEdge = vox_maxp })
 	o2 = os.clock()
-	local noise_map = PerlinNoiseMap(mg_noise_params,
+	local noise_map = minetest.get_perlin_map(mg_noise_params,
 			{ x = maxp.x - minp.x + 1, y = maxp.y - minp.y + 1, z = maxp.z - minp.z + 1 })
 	local noise_table = noise_map:get3dMap_flat(minp)
 	local noise_index = 0
