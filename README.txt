@@ -6,17 +6,6 @@ NOTE: THIS IS JUST A RANDOM BENCHMARK FORK OF SCORE, USE THIS INSTEAD: https://g
 benchmark:
 ---------
 
-# luajit
-total: 0.665125
-setup: 0.045493
-noise gen: 0.055298000000001
-stone gen: 0.023987999999996
-set data: 0.033272000000004
-ore gen: 0.477891
-lighting: 0.012331000000003
-write: 0.016852
-
-
 # lua
 
 ## no edit
@@ -58,6 +47,28 @@ set data: 0.029131999999999
 ore gen: 0.51141
 lighting: 0.0081059999999997
 write: 0.015091999999999
+
+# luajit
+
+## no edit
+total: 0.665125
+setup: 0.045493
+noise gen: 0.055298000000001
+stone gen: 0.023987999999996
+set data: 0.033272000000004
+ore gen: 0.477891
+lighting: 0.012331000000003
+write: 0.016852
+
+## after everything
+total: 0.616139
+setup: 0.043431999999999
+noise gen: 0.051199
+stone gen: 0.021277999999999
+set data: 0.029759000000002
+ore gen: 0.449325
+lighting: 0.0080600000000004
+write: 0.013086000000001
 
 Installation:
 -------------
