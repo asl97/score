@@ -560,7 +560,9 @@ minetest.set_mapgen_params({
 
 local c_air
 local c_stones = {}
-
+for level = 1, LEVEL_MAX do
+	c_stones[level] = minetest.get_content_id("score:stone_" .. level)
+end
 minetest.register_on_generated(function(minp, maxp, seed)
 	local o1, o2, o3, o4, o5, o6, o7, o8
 	o1 = os.clock()
@@ -587,9 +589,6 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		local noise = noise_table[noise_index] + math.abs((y + 50) / 32.0) - 0.8
 
 		if noise > 0.0 then
-			if not c_stones[level] then
-				c_stones[level] = minetest.get_content_id("score:stone_" .. level)
-			end
 			vox_data[vox_index] = c_stones[level]
 		else
 			vox_data[vox_index] = c_air
